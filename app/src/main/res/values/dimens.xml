@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="medium_padding">16dp</dimen>
+    <dimen name="medium_textsize">22sp</dimen>
+    <dimen name="small_textsize">16sp</dimen>
+    <dimen name="corner_radius">16dp</dimen>
+    <dimen name="margin_between">16dp</dimen>
+    <dimen name="icon_padding">10dp</dimen>
+    <dimen name="icon_padding_2">28dp</dimen>
+    <dimen name="icon_size_24">24dp</dimen>
+    <dimen name="padding_vertical_21">21dp</dimen>
+    <dimen name="height_18dp">18dp</dimen>
+</resources>
