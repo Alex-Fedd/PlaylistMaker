@@ -10,4 +10,6 @@
     <dimen name="icon_size_24">24dp</dimen>
     <dimen name="padding_vertical_21">21dp</dimen>
     <dimen name="height_18dp">18dp</dimen>
+    <dimen name="size_48dp">48dp</dimen>
+    <dimen name="size_0dp">0dp</dimen>
 </resources>

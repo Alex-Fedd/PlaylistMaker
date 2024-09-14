@@ -3,14 +3,12 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/blue_bg"
-    android:paddingStart="@dimen/medium_padding"
-    android:paddingEnd="@dimen/medium_padding"
-    android:paddingBottom="28dp"
+    android:paddingBottom="12dp"
     android:paddingTop="14dp"
     >
 
@@ -18,39 +16,46 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/app_name"
+        android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="@dimen/medium_textsize"
-        android:textStyle="normal"
         android:layout_gravity="start"
+        android:paddingBottom="@dimen/medium_padding"
+        android:layout_marginHorizontal="@dimen/margin_between"
+
         />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="24dp"
         >
 
-       <Button
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:layout_weight="1"
-           app:icon="@drawable/vector_search"
-           app:iconGravity="textStart"
-           app:iconPadding="@dimen/icon_padding"
-           app:iconTint="@color/black"
-           app:cornerRadius="@dimen/corner_radius"
-           android:backgroundTint="@color/white"
-           android:text="@string/search_but_text"
-           android:textColor="@color/black"
-           android:textSize="@dimen/medium_textsize"
-           android:layout_marginBottom="@dimen/margin_between"
-           android:gravity="center"
-           />
+        <Button
+            android:id="@+id/search_button"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:icon="@drawable/vector_search"
+            app:iconGravity="textStart"
+            app:iconPadding="@dimen/icon_padding"
+            app:iconTint="@color/black"
+            app:cornerRadius="@dimen/corner_radius"
+            android:backgroundTint="@color/white"
+            android:textAllCaps="false"
+            android:text="@string/search_but_text"
+            android:textColor="@color/black"
+            android:textSize="@dimen/medium_textsize"
+            android:layout_marginBottom="@dimen/margin_between"
+            android:layout_marginHorizontal="@dimen/margin_between"
+            android:gravity="center"
+            />
 
         <Button
+            android:id="@+id/mediateka_button"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="1"
             app:icon="@drawable/vector_mediateka"
             app:iconGravity="textStart"
@@ -58,16 +63,19 @@
             app:iconTint="@color/black"
             app:cornerRadius="@dimen/corner_radius"
             android:backgroundTint="@color/white"
+            android:textAllCaps="false"
             android:text="@string/media_but_text"
             android:textColor="@color/black"
             android:textSize="@dimen/medium_textsize"
             android:layout_marginBottom="@dimen/margin_between"
             android:gravity="center"
+            android:layout_marginHorizontal="@dimen/margin_between"
             />
 
         <Button
+            android:id="@+id/settings_button"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="1"
             app:icon="@drawable/vector_cog"
             app:iconGravity="textStart"
@@ -75,10 +83,13 @@
             app:iconTint="@color/black"
             app:cornerRadius="@dimen/corner_radius"
             android:backgroundTint="@color/white"
+            android:textAllCaps="false"
             android:text="@string/settings_but_text"
             android:textColor="@color/black"
             android:textSize="@dimen/medium_textsize"
             android:gravity="center"
+            android:layout_marginBottom="@dimen/margin_between"
+            android:layout_marginHorizontal="@dimen/margin_between"
             />
 
     </LinearLayout>
