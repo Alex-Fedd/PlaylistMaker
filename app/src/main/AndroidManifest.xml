@@ -13,6 +13,12 @@
         android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".Mediateka"
+            android:exported="false" />
+        <activity
+            android:name=".Search"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -21,6 +27,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

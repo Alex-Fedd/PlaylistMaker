@@ -2,12 +2,14 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical">
 
     <Button
+        android:id="@+id/back_button"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,7 +18,7 @@
         android:gravity="center"
         android:paddingStart="20dp"
         android:paddingTop="14dp"
-        android:paddingBottom="@dimen/medium_padding"
+        android:paddingBottom="@dimen/size_16dp"
         android:text="@string/settings_but_text"
         android:textAllCaps="false"
         android:textColor="@color/black"
@@ -30,7 +32,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/margin_between"
+        android:layout_marginHorizontal="@dimen/size_16dp"
         android:layout_marginTop="@dimen/icon_size_24"
         android:orientation="horizontal">
 
@@ -56,7 +58,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/margin_between"
+        android:layout_marginHorizontal="@dimen/size_16dp"
         android:orientation="horizontal">
 
         <TextView
@@ -70,7 +72,7 @@
             android:textSize="@dimen/small_textsize" />
 
         <ImageView
-            android:layout_width="@dimen/medium_padding"
+            android:layout_width="@dimen/size_16dp"
             android:layout_height="@dimen/height_18dp"
             android:layout_gravity="center"
             android:contentDescription="@string/some_content_des"
@@ -80,7 +82,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/margin_between"
+        android:layout_marginHorizontal="@dimen/size_16dp"
         android:orientation="horizontal">
 
         <TextView
@@ -104,7 +106,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/margin_between"
+        android:layout_marginHorizontal="@dimen/size_16dp"
         android:orientation="horizontal">
 
         <TextView
