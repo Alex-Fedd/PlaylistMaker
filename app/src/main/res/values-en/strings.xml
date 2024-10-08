@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Playlist Maker</string>
+    <string name="yes_button">Yes</string>
+    <string name="no_button">No</string>
+</resources>

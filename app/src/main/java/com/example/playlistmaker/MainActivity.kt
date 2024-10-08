@@ -1,6 +1,9 @@
 package com.example.playlistmaker
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -11,10 +14,38 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        
+        val searchButton = findViewById<Button>(R.id.search_button)
+        val mediaButton = findViewById<Button>(R.id.mediateka_button)
+        val settingsButton = findViewById<Button>(R.id.settings_button)
+
+        val searchButtonClickListener: View.OnClickListener = object : View.OnClickListener { // оставил 1 анон.класс
+            override fun onClick(v: View?) {
+                val searchButtonIntent = Intent(this@MainActivity, Search::class.java)
+                startActivity(searchButtonIntent)
+            }
+        }
+        searchButton.setOnClickListener(searchButtonClickListener)
+
+        mediaButton.setOnClickListener{
+            val mediaButtonIntent = Intent(this@MainActivity, Mediateka::class.java)
+            startActivity(mediaButtonIntent)
+        }
+
+        settingsButton.setOnClickListener{
+            val settingsButtonIntent = Intent(this@MainActivity, SettingsActivity::class.java)
+            startActivity(settingsButtonIntent)
+        }
+
+
+
+
+    ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
     }
 }
+
