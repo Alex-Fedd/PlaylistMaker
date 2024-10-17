@@ -3,4 +3,12 @@
     <string name="app_name">Playlist Maker</string>
     <string name="yes_button">Yes</string>
     <string name="no_button">No</string>
+    <string name="search_but_text">Search</string>
+    <string name="media_but_text">Mediateka</string>
+    <string name="settings_but_text">Settings</string>
+    <string name="dark_theme">Dark Theme</string>
+    <string name="share_text">Share App</string>
+    <string name="support_text">Contact Support</string>
+    <string name="agreement_text">User Agreement</string>
+    <string name="some_content_des">icon</string>
 </resources>

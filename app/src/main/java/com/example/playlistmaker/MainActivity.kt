@@ -14,11 +14,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-        
-        val searchButton = findViewById<Button>(R.id.search_button)
-        val mediaButton = findViewById<Button>(R.id.mediateka_button)
-        val settingsButton = findViewById<Button>(R.id.settings_button)
 
+        val searchButton = findViewById<Button>(R.id.search_button)
         val searchButtonClickListener: View.OnClickListener = object : View.OnClickListener { // оставил 1 анон.класс
             override fun onClick(v: View?) {
                 val searchButtonIntent = Intent(this@MainActivity, Search::class.java)
@@ -27,17 +24,17 @@ class MainActivity : AppCompatActivity() {
         }
         searchButton.setOnClickListener(searchButtonClickListener)
 
+        val mediaButton = findViewById<Button>(R.id.mediateka_button)
         mediaButton.setOnClickListener{
             val mediaButtonIntent = Intent(this@MainActivity, Mediateka::class.java)
             startActivity(mediaButtonIntent)
         }
 
+        val settingsButton = findViewById<Button>(R.id.settings_button)
         settingsButton.setOnClickListener{
             val settingsButtonIntent = Intent(this@MainActivity, SettingsActivity::class.java)
             startActivity(settingsButtonIntent)
         }
-
-
 
 
     ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
