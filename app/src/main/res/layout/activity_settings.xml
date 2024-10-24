@@ -36,9 +36,8 @@
             android:layout_weight="8"
             android:text="@string/dark_theme"/>
 
-        <androidx.appcompat.widget.SwitchCompat
+        <com.google.android.material.switchmaterial.SwitchMaterial
             style="@style/SwitcherIconStyle"
-
             android:layout_width="@dimen/size_0dp"
             android:layout_height="@dimen/size_48dp"
             android:layout_weight="2"
@@ -54,12 +53,14 @@
         android:orientation="horizontal">
 
         <TextView style="@style/SettingsButtonTextStyle"
-            android:layout_weight="1"
+            android:layout_weight="12"
             android:text="@string/share_text"/>
 
         <ImageView
+            android:id="@+id/share_app_button"
             android:layout_width="@dimen/size_16dp"
             android:layout_height="@dimen/height_18dp"
+            android:layout_weight="1"
             android:layout_gravity="center"
             android:contentDescription="@string/some_content_des"
             android:src="@drawable/share" />
@@ -72,12 +73,14 @@
         android:orientation="horizontal">
 
         <TextView style="@style/SettingsButtonTextStyle"
-            android:layout_weight="1"
+            android:layout_weight="12"
             android:text="@string/support_text" />
 
         <ImageView
+            android:id="@+id/supp_button"
             android:layout_width="20dp"
             android:layout_height="@dimen/height_18dp"
+            android:layout_weight="1"
             android:layout_gravity="center"
             android:contentDescription="@string/some_content_des"
             android:src="@drawable/support" />
@@ -90,12 +93,14 @@
         android:orientation="horizontal">
 
         <TextView style="@style/SettingsButtonTextStyle"
-            android:layout_weight="1"
+            android:layout_weight="12"
             android:text="@string/agreement_text"/>
 
         <ImageView
+            android:id="@+id/user_agreement_button"
             android:layout_width="8dp"
             android:layout_height="14dp"
+            android:layout_weight="1"
             android:layout_gravity="center"
             android:contentDescription="@string/some_content_des"
             android:src="@drawable/arrow_forward" />

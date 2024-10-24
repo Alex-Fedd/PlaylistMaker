@@ -11,4 +11,9 @@
     <string name="support_text">Contact Support</string>
     <string name="agreement_text">User Agreement</string>
     <string name="some_content_des">icon</string>
+    <string name="course_website_link">https://practicum.yandex.ru/profile/android-developer-plus</string>
+    <string name="agreement_link">https://yandex.ru/legal/practicum_offer</string>
+    <string name="email_link">blackyblackmail@yandex.ru</string>
+    <string name="email_title">A message to the devs of the Playlist Maker app</string>
+    <string name="email_body">Thanks to the devs for the great app!</string>
 </resources>

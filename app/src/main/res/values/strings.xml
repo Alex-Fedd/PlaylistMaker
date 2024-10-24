@@ -10,4 +10,10 @@
     <string name="support_text">Написать в поддержку</string>
     <string name="agreement_text">Пользовательское соглашение</string>
     <string name="some_content_des">icon</string>
+
+    <string name="course_website_link">https://practicum.yandex.ru/profile/android-developer-plus</string>
+    <string name="agreement_link">https://yandex.ru/legal/practicum_offer</string>
+    <string name="email_link">blackyblackmail@yandex.ru</string>
+    <string name="email_title">Сообщение разработчикам и разработчицам приложения Playlist Maker</string>
+    <string name="email_body">Спасибо разработчикам и разработчицам за крутое приложение!</string>
 </resources>
