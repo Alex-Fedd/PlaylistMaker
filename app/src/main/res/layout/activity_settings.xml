@@ -30,7 +30,8 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/size_16dp"
         android:layout_marginTop="@dimen/icon_size_24"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        >
 
         <TextView style="@style/SettingsButtonTextStyle"
             android:layout_weight="8"
@@ -42,7 +43,9 @@
             android:layout_height="@dimen/size_48dp"
             android:layout_weight="2"
             android:contentDescription="@string/some_content_des"
-            android:gravity="center" />
+            android:gravity="center"
+            android:id="@+id/switch_theme"
+            />
 
     </LinearLayout>
 

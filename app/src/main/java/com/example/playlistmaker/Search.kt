@@ -20,6 +20,8 @@ import androidx.core.view.WindowInsetsCompat
 
 class Search : AppCompatActivity() {
 
+    private var searchInput: String = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -63,11 +65,12 @@ class Search : AppCompatActivity() {
                         }
 
                     } else {
-                        clearTextButton.visibility = clearButtonVisible(s) // если не ввел - убрать видимолсть иконки очистки
+                        clearTextButton.visibility = clearButtonVisible(s) // если не ввел - убрать видимость иконки очистки
                     }
                 }
 
                 override fun afterTextChanged(s: Editable?) {
+                    searchInput = s.toString() // когда уже кончили вводить - это и кладем в глобал.переменную
                 }
 
             })
@@ -82,6 +85,18 @@ class Search : AppCompatActivity() {
             }
         }
 
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString(SEARCH_INPUT, searchInput)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        searchInput = savedInstanceState.getString(SEARCH_INPUT, "")
+
+        //setText() не нужен - и так сохраняется и вставляется текст при поворотах
     }
 
     private fun clearButtonVisible(s: CharSequence?):Int{ // проверка, если текст пустой,
@@ -103,6 +118,10 @@ class Search : AppCompatActivity() {
         val nightModeFlags = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
         val isDarkModeOn = nightModeFlags == Configuration.UI_MODE_NIGHT_YES
         return isDarkModeOn
+    }
+
+    companion object{
+        const val SEARCH_INPUT = "SEARCH INPUT"
     }
 
 }

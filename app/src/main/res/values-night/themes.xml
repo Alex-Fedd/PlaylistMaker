@@ -11,7 +11,7 @@
     </style>
 
     <style name="SwitcherIconStyle">
-        <item name="trackTint">@color/track_color_night</item>
+        <item name="trackTint">@color/track_color</item>
         <item name="thumbTint">@color/blue_bg</item>
         <item name="android:checked">true</item>
     </style>

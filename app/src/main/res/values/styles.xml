@@ -21,7 +21,7 @@
         <item name="android:gravity">center</item>
     </style>
 
-    <style name="ActivityTopPanelStyle" >
+    <style name="ActivityTopPanelStyle" parent="Widget.MaterialComponents.Button.UnelevatedButton">
         <item name="android:fontFamily">@font/ys_display_medium</item>
         <item name="android:textFontWeight">500</item>
         <item name="android:layout_width">wrap_content</item>

@@ -7,9 +7,10 @@ import android.widget.Button
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.net.toUri
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.switchmaterial.SwitchMaterial
 
 class SettingsActivity : AppCompatActivity() {
 
@@ -27,6 +28,15 @@ class SettingsActivity : AppCompatActivity() {
         val backButton = findViewById<Button>(R.id.back_button)
         backButton.setOnClickListener {
             this.finish()
+        }
+
+        // сам нашел логику переключения на свитчере (в спринте 9 еще не было этого)
+        val switchBtn = findViewById<SwitchMaterial>(R.id.switch_theme)
+        switchBtn.setOnCheckedChangeListener {
+                                             buttonView, isChecked ->
+            if(isChecked) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else AppCompatDelegate.setDefaultNightMode (AppCompatDelegate.MODE_NIGHT_NO)
         }
 
         val shareTheAppButton = findViewById<ImageView>(R.id.share_app_button)
@@ -62,6 +72,7 @@ class SettingsActivity : AppCompatActivity() {
             val userAgreementButtonIntent = Intent(Intent.ACTION_VIEW, url)
             startActivity(userAgreementButtonIntent)
         }
+
 
     }
 }

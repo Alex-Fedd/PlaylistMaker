@@ -17,7 +17,7 @@
         android:textColor="@color/white"
         android:textSize="@dimen/medium_textsize"
         android:paddingBottom="@dimen/size_16dp"
-        android:layout_marginHorizontal="@dimen/size_16dp"
+
         />
 
     <LinearLayout
