@@ -33,7 +33,7 @@ class SettingsActivity : AppCompatActivity() {
         // сам нашел логику переключения на свитчере (в спринте 9 еще не было этого)
         val switchBtn = findViewById<SwitchMaterial>(R.id.switch_theme)
         switchBtn.setOnCheckedChangeListener {
-                                             buttonView, isChecked ->
+                _, isChecked ->
             if(isChecked) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             } else AppCompatDelegate.setDefaultNightMode (AppCompatDelegate.MODE_NIGHT_NO)
@@ -42,10 +42,11 @@ class SettingsActivity : AppCompatActivity() {
         val shareTheAppButton = findViewById<ImageView>(R.id.share_app_button)
         shareTheAppButton.setOnClickListener {
             val shareAppLinkText = getString(R.string.course_website_link)
-            val shareAppIntent = Intent()              // НБ: можно было через apply+createChooser еще https://developer.android.com/training/sharing/send#kotlin
+            val shareAppIntent = Intent()  // можно было через apply+createChooser еще https://developer.android.com/training/sharing/send#kotlin
             shareAppIntent.action = Intent.ACTION_SEND
             shareAppIntent.putExtra(Intent.EXTRA_TEXT, shareAppLinkText)
             shareAppIntent.type = "text/plain"
+
             val chooseIntent = Intent.createChooser(shareAppIntent, null)
             startActivity(chooseIntent)
         }
@@ -58,7 +59,7 @@ class SettingsActivity : AppCompatActivity() {
             val supportIntent = Intent().apply {  // scope-функцию применил
                 action = Intent.ACTION_SENDTO
                 data = Uri.parse("mailto:")
-                putExtra(Intent.EXTRA_EMAIL, emailTo)
+                putExtra(Intent.EXTRA_EMAIL, arrayOf(emailTo))
                 putExtra(Intent.EXTRA_SUBJECT, emailSubject)
                 putExtra(Intent.EXTRA_TEXT, emailMsg)
             }

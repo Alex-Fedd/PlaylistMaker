@@ -42,6 +42,7 @@ class Search : AppCompatActivity() {
         val clearTextButton = findViewById<ImageView>(R.id.clear_btn)
         clearTextButton.setOnClickListener{
             inputET.getText().clear()  // можно и .setText("")
+            hideKeyB(inputET)
         }
 
         val linearLay = findViewById<LinearLayout>(R.id.search_activity)
