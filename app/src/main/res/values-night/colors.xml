@@ -8,10 +8,9 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="blue_bg">#3772E7</color>
-    <color name="track_color">#E6E8EB</color>
-    <color name="thumb_color">#AEAFB4</color>
+    <color name="track_color">#9FBBF3</color>
+    <color name="thumb_color">#3772E7</color>
 
-    <color name="clear_btn_color">#AEAFB4</color>
-    <color name="edit_text_bg">#E6E8EB</color>
-
+    <color name="clear_btn_color">#1A1B22</color>
+    <color name="edit_text_bg">#FFFFFFFF</color>
 </resources>

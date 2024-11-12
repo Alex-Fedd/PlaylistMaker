@@ -5,53 +5,47 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="?attr/colorSecondary"
     android:orientation="vertical">
 
-    <Button
+    <Button style="@style/ActivityTopPanelStyle"
+        android:background="@android:color/transparent"
         android:id="@+id/back_button"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
         android:backgroundTint="@color/white"
         android:gravity="center"
         android:paddingStart="20dp"
         android:paddingTop="14dp"
         android:paddingBottom="@dimen/size_16dp"
         android:text="@string/settings_but_text"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
+        android:textColor="?attr/colorOnPrimary"
         android:textSize="@dimen/medium_textsize"
         android:textStyle="normal"
         app:icon="@drawable/arrow_back"
         app:iconGravity="textStart"
         app:iconPadding="@dimen/icon_padding_2"
-        app:iconTint="@color/black" />
+        app:iconTint="?attr/colorOnPrimary" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/size_16dp"
         android:layout_marginTop="@dimen/icon_size_24"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        >
 
-        <TextView
-            android:layout_width="@dimen/size_0dp"
-            android:layout_height="wrap_content"
+        <TextView style="@style/SettingsButtonTextStyle"
             android:layout_weight="8"
-            android:gravity="start"
-            android:paddingVertical="@dimen/padding_vertical_21"
-            android:text="@string/dark_theme"
-            android:textColor="@color/black"
-            android:textSize="@dimen/small_textsize" />
+            android:text="@string/dark_theme"/>
 
-        <Switch
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            style="@style/SwitcherIconStyle"
             android:layout_width="@dimen/size_0dp"
             android:layout_height="@dimen/size_48dp"
-            android:layout_weight="1.5"
+            android:layout_weight="2"
             android:contentDescription="@string/some_content_des"
-            android:gravity="center" />
+            android:gravity="center"
+            android:id="@+id/switch_theme"
+            />
 
     </LinearLayout>
 
@@ -61,19 +55,15 @@
         android:layout_marginHorizontal="@dimen/size_16dp"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="start"
-            android:paddingVertical="@dimen/padding_vertical_21"
-            android:text="@string/share_text"
-            android:textColor="@color/black"
-            android:textSize="@dimen/small_textsize" />
+        <TextView style="@style/SettingsButtonTextStyle"
+            android:layout_weight="12"
+            android:text="@string/share_text"/>
 
         <ImageView
+            android:id="@+id/share_app_button"
             android:layout_width="@dimen/size_16dp"
             android:layout_height="@dimen/height_18dp"
+            android:layout_weight="1"
             android:layout_gravity="center"
             android:contentDescription="@string/some_content_des"
             android:src="@drawable/share" />
@@ -85,19 +75,15 @@
         android:layout_marginHorizontal="@dimen/size_16dp"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="start"
-            android:paddingVertical="@dimen/padding_vertical_21"
-            android:text="@string/support_text"
-            android:textColor="@color/black"
-            android:textSize="@dimen/small_textsize" />
+        <TextView style="@style/SettingsButtonTextStyle"
+            android:layout_weight="12"
+            android:text="@string/support_text" />
 
         <ImageView
+            android:id="@+id/supp_button"
             android:layout_width="20dp"
             android:layout_height="@dimen/height_18dp"
+            android:layout_weight="1"
             android:layout_gravity="center"
             android:contentDescription="@string/some_content_des"
             android:src="@drawable/support" />
@@ -109,19 +95,15 @@
         android:layout_marginHorizontal="@dimen/size_16dp"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="start"
-            android:paddingVertical="@dimen/padding_vertical_21"
-            android:text="@string/agreement_text"
-            android:textColor="@color/black"
-            android:textSize="@dimen/small_textsize" />
+        <TextView style="@style/SettingsButtonTextStyle"
+            android:layout_weight="12"
+            android:text="@string/agreement_text"/>
 
         <ImageView
+            android:id="@+id/user_agreement_button"
             android:layout_width="8dp"
             android:layout_height="14dp"
+            android:layout_weight="1"
             android:layout_gravity="center"
             android:contentDescription="@string/some_content_des"
             android:src="@drawable/arrow_forward" />

@@ -7,21 +7,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/blue_bg"
+    android:background="?attr/colorPrimary"
     android:paddingBottom="12dp"
     android:paddingTop="14dp"
     >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <TextView style="@style/ActivityTopPanelStyle"
         android:text="@string/app_name"
-        android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="@dimen/medium_textsize"
-        android:layout_gravity="start"
         android:paddingBottom="@dimen/size_16dp"
-        android:layout_marginHorizontal="@dimen/size_16dp"
 
         />
 
@@ -32,64 +27,22 @@
         android:layout_marginTop="24dp"
         >
 
-        <Button
+        <Button style="@style/MainActivityButtonStyle"
             android:id="@+id/search_button"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
             app:icon="@drawable/vector_search"
-            app:iconGravity="textStart"
-            app:iconPadding="@dimen/icon_padding"
-            app:iconTint="@color/black"
-            app:cornerRadius="@dimen/size_16dp"
-            android:backgroundTint="@color/white"
-            android:textAllCaps="false"
             android:text="@string/search_but_text"
-            android:textColor="@color/black"
-            android:textSize="@dimen/medium_textsize"
-            android:layout_marginBottom="@dimen/size_16dp"
-            android:layout_marginHorizontal="@dimen/size_16dp"
-            android:gravity="center"
             />
 
-        <Button
+        <Button style="@style/MainActivityButtonStyle"
             android:id="@+id/mediateka_button"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
             app:icon="@drawable/vector_mediateka"
-            app:iconGravity="textStart"
-            app:iconPadding="@dimen/icon_padding"
-            app:iconTint="@color/black"
-            app:cornerRadius="@dimen/size_16dp"
-            android:backgroundTint="@color/white"
-            android:textAllCaps="false"
             android:text="@string/media_but_text"
-            android:textColor="@color/black"
-            android:textSize="@dimen/medium_textsize"
-            android:layout_marginBottom="@dimen/size_16dp"
-            android:gravity="center"
-            android:layout_marginHorizontal="@dimen/size_16dp"
             />
 
-        <Button
+        <Button style="@style/MainActivityButtonStyle"
             android:id="@+id/settings_button"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
             app:icon="@drawable/vector_cog"
-            app:iconGravity="textStart"
-            app:iconPadding="@dimen/icon_padding"
-            app:iconTint="@color/black"
-            app:cornerRadius="@dimen/size_16dp"
-            android:backgroundTint="@color/white"
-            android:textAllCaps="false"
             android:text="@string/settings_but_text"
-            android:textColor="@color/black"
-            android:textSize="@dimen/medium_textsize"
-            android:gravity="center"
-            android:layout_marginBottom="@dimen/size_16dp"
-            android:layout_marginHorizontal="@dimen/size_16dp"
             />
 
     </LinearLayout>

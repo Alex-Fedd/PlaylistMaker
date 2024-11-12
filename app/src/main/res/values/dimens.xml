@@ -10,4 +10,7 @@
     <dimen name="height_18dp">18dp</dimen>
     <dimen name="size_48dp">48dp</dimen>
     <dimen name="size_0dp">0dp</dimen>
+    <dimen name="size_8dp">8dp</dimen>
+    <dimen name="size_12dp">12dp</dimen>
+    <dimen name="size_14dp">14dp</dimen>
 </resources>
