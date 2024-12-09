@@ -13,4 +13,6 @@
     <dimen name="size_8dp">8dp</dimen>
     <dimen name="size_12dp">12dp</dimen>
     <dimen name="size_14dp">14dp</dimen>
+    <dimen name="text_11sp">11sp</dimen>
+    <dimen name="size_13dp">13dp</dimen>
 </resources>

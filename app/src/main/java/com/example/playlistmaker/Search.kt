@@ -17,10 +17,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.RecyclerView
 
 class Search : AppCompatActivity() {
 
     private var searchInput: String = ""
+    private lateinit var tracksList: ArrayList<Track> // создаю ссылку на список, позже инициализирую список треков
+    private lateinit var adapter: TracksAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +34,14 @@ class Search : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        // ниже несколько строк про RV и адаптер
+        tracksList = createTracksList()
+        adapter = TracksAdapter(tracksList) // создал адаптер и передал список в него
+        val recyclerView = findViewById<RecyclerView>(R.id.rv_tracks) // нашел свой РВ в хмл
+        recyclerView.adapter = adapter // сажаю адаптер свой на адаптер РВшки
+
+
 
         val backButton = findViewById<Button>(R.id.back_search_button)
         backButton.setOnClickListener {
@@ -119,6 +130,27 @@ class Search : AppCompatActivity() {
         val nightModeFlags = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
         val isDarkModeOn = nightModeFlags == Configuration.UI_MODE_NIGHT_YES
         return isDarkModeOn
+    }
+
+    private fun createTracksList(): ArrayList<Track>{
+        val tracksList: ArrayList<Track> = arrayListOf()
+        return tracksList.apply {
+            add(
+                Track(getString(R.string.track_1_tr_name), getString(R.string.track_1_artist_name), getString(R.string.track_1_tr_time), getString(R.string.track_1_artwork_url))
+            )
+            add(
+                Track(getString(R.string.track_2_tr_name), getString(R.string.track_2_artist_name), getString(R.string.track_2_tr_time), getString(R.string.track_2_artwork_url))
+            )
+            add(
+                Track(getString(R.string.track_3_tr_name), getString(R.string.track_3_artist_name), getString(R.string.track_3_tr_time), getString(R.string.track_3_artwork_url))
+            )
+            add(
+                Track(getString(R.string.track_4_tr_name), getString(R.string.track_4_artist_name), getString(R.string.track_4_tr_time), getString(R.string.track_4_artwork_url))
+            )
+            add(
+                Track(getString(R.string.track_5_tr_name), getString(R.string.track_5_artist_name), getString(R.string.track_5_tr_time), getString(R.string.track_5_artwork_url))
+            )
+        }
     }
 
     companion object{
