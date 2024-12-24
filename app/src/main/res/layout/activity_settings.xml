@@ -8,105 +8,50 @@
     android:background="?attr/colorSecondary"
     android:orientation="vertical">
 
-    <Button style="@style/ActivityTopPanelStyle"
-        android:background="@android:color/transparent"
-        android:id="@+id/back_button"
-        android:backgroundTint="@color/white"
-        android:gravity="center"
-        android:paddingStart="20dp"
-        android:paddingTop="14dp"
-        android:paddingBottom="@dimen/size_16dp"
-        android:text="@string/settings_but_text"
-        android:textColor="?attr/colorOnPrimary"
-        android:textSize="@dimen/medium_textsize"
-        android:textStyle="normal"
-        app:icon="@drawable/arrow_back"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/top_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:padding="4dp"
         app:iconGravity="textStart"
-        app:iconPadding="@dimen/icon_padding_2"
-        app:iconTint="?attr/colorOnPrimary" />
+        app:navigationIcon="@drawable/arrow_back"
+        app:title="@string/settings_but_text"
+        app:titleTextAppearance="@style/ToolbarCustomStyle" />
 
-    <LinearLayout
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/switch_theme"
+        style="@style/SwitcherIconStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/size_16dp"
         android:layout_marginTop="@dimen/icon_size_24"
-        android:orientation="horizontal"
-        >
+        android:text="@string/dark_theme"
+        android:thumb="@drawable/knob" />
 
-        <TextView style="@style/SettingsButtonTextStyle"
-            android:layout_weight="8"
-            android:text="@string/dark_theme"/>
-
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            style="@style/SwitcherIconStyle"
-            android:layout_width="@dimen/size_0dp"
-            android:layout_height="@dimen/size_48dp"
-            android:layout_weight="2"
-            android:contentDescription="@string/some_content_des"
-            android:gravity="center"
-            android:id="@+id/switch_theme"
-            />
-
-    </LinearLayout>
-
-    <LinearLayout
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/share_app_button"
+        style="@style/SwitcherIconStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/size_16dp"
-        android:orientation="horizontal">
+        android:drawableEnd="@drawable/share"
+        android:text="@string/share_text"
 
-        <TextView style="@style/SettingsButtonTextStyle"
-            android:layout_weight="12"
-            android:text="@string/share_text"/>
+        />
 
-        <ImageView
-            android:id="@+id/share_app_button"
-            android:layout_width="@dimen/size_16dp"
-            android:layout_height="@dimen/height_18dp"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:contentDescription="@string/some_content_des"
-            android:src="@drawable/share" />
-    </LinearLayout>
-
-    <LinearLayout
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/supp_button"
+        style="@style/SwitcherIconStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/size_16dp"
-        android:orientation="horizontal">
+        android:drawableEnd="@drawable/support"
+        android:text="@string/support_text" />
 
-        <TextView style="@style/SettingsButtonTextStyle"
-            android:layout_weight="12"
-            android:text="@string/support_text" />
-
-        <ImageView
-            android:id="@+id/supp_button"
-            android:layout_width="20dp"
-            android:layout_height="@dimen/height_18dp"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:contentDescription="@string/some_content_des"
-            android:src="@drawable/support" />
-    </LinearLayout>
-
-    <LinearLayout
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/user_agreement_button"
+        style="@style/SwitcherIconStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/size_16dp"
-        android:orientation="horizontal">
+        android:drawableEnd="@drawable/arrow_forward"
+        android:text="@string/agreement_text" />
 
-        <TextView style="@style/SettingsButtonTextStyle"
-            android:layout_weight="12"
-            android:text="@string/agreement_text"/>
-
-        <ImageView
-            android:id="@+id/user_agreement_button"
-            android:layout_width="8dp"
-            android:layout_height="14dp"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:contentDescription="@string/some_content_des"
-            android:src="@drawable/arrow_forward" />
-
-    </LinearLayout>
 </LinearLayout>

@@ -16,4 +16,7 @@
     <string name="email_link">blackyblackmail@yandex.ru</string>
     <string name="email_title">A message to the devs of the Playlist Maker app</string>
     <string name="email_body">Thanks to the devs for the great app!</string>
+    <string name="reset_button">Reset</string>
+    <string name="nothing_was_found">Nothing found</string>
+    <string name="network_issues">Network issues.   Loading was unsuccessful. Check your internet connection</string>
 </resources>

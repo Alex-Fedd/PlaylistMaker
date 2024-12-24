@@ -17,6 +17,11 @@
     <string name="email_title">Сообщение разработчикам и разработчицам приложения Playlist Maker</string>
     <string name="email_body">Спасибо разработчикам и разработчицам за крутое приложение!</string>
 
+    <string name="reset_button">Обновить</string>
+    <string name="nothing_was_found">Ничего не нашлось</string>
+    <string name="network_issues">Проблемы со связью.\n\n Загрузка не удалась. Проверьте подключение к интернету</string>
+
+
 
     <string name="track_1_tr_name">Smells Like Teen Spirit</string>
     <string name="track_1_artist_name">Nirvana</string>
@@ -42,5 +47,6 @@
     <string name="track_5_artist_name">Guns N\' Roses</string>
     <string name="track_5_tr_time">5:03</string>
     <string name="track_5_artwork_url">https://is5-ssl.mzstatic.com/image/thumb/Music125/v4/a0/4d/c4/a04dc484-03cc-02aa-fa82-5334fcb4bc16/18UMGIM24878.rgb.jpg/100x100bb.jpg</string>
+
 
 </resources>
