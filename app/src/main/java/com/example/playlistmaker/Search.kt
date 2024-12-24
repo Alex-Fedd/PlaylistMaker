@@ -33,7 +33,6 @@ import retrofit2.create
 class Search : AppCompatActivity() {
 
     private var searchInput: String = ""
-
     private val baseUrl = "https://itunes.apple.com"
 
     // добавил логинг по рекомендации - для мониторинга (запросы проходят)
@@ -51,17 +50,17 @@ class Search : AppCompatActivity() {
 
     private val soundtrackApi = retro.create<SoundtrackApi>()
 
-
     private lateinit var tracksList: ArrayList<Track> // создаю ссылку на список, позже инициализирую список треков
     private lateinit var adapter: TracksAdapter
     private lateinit var placeholderErrorsArea: LinearLayout
     private lateinit var resetBtn: MaterialButton
     private lateinit var errorPhrase: MaterialTextView
     private lateinit var errorPic: ImageView
+    private lateinit var clearTextButton: ImageView
 
-    private var myRecentInput: String = "" // для запоминания последнего введенного и перезапроса по Кнопке ресета,
-                                           // если она показывается при запросе
-
+    private var myRecentInput: String =
+        "" // для запоминания последнего введенного и перезапроса по Кнопке ресета,
+    // если она показывается при запросе
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,7 +78,6 @@ class Search : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.rv_tracks) // нашел свой РВ в хмл
         recyclerView.adapter = adapter // сажаю адаптер свой на адаптер РВшки
 
-
         val backButton = findViewById<Toolbar>(R.id.toolbar_search_back)
         backButton.setNavigationOnClickListener {
             this.finish()
@@ -87,11 +85,11 @@ class Search : AppCompatActivity() {
 
         val inputET = findViewById<EditText>(R.id.search_field)
 
-        val clearTextButton = findViewById<ImageView>(R.id.clear_btn)
+        clearTextButton = findViewById(R.id.clear_btn)
         clearTextButton.setOnClickListener {
             inputET.getText().clear()  // можно и .setText("")
             tracksList.clear()
-            placeholderErrorsArea.visibility = View.GONE
+            //placeholderErrorsArea.visibility = View.GONE
             adapter.notifyDataSetChanged()
             hideKeyB(inputET)
         }
@@ -135,7 +133,14 @@ class Search : AppCompatActivity() {
 
                 override fun afterTextChanged(s: Editable?) {
                     searchInput =
-                        s.toString() // когда уже закончили вводить - это и кладем в глобал.переменную
+                        s.toString() // когда уже закончили вводить-то кладем в глобал.переменную
+                    if (s.isNullOrEmpty()) {
+                        errorPic.visibility = View.GONE
+                        placeholderErrorsArea.visibility = View.GONE
+                        errorPhrase.visibility = View.GONE
+                        tracksList.clear()
+                        adapter.notifyDataSetChanged()
+                    }
                 }
 
             })
@@ -166,7 +171,6 @@ class Search : AppCompatActivity() {
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         searchInput = savedInstanceState.getString(SEARCH_INPUT, "")
-
         //setText() не нужен - и так сохраняется и вставляется текст при поворотах
     }
 
@@ -185,30 +189,33 @@ class Search : AppCompatActivity() {
         v.clearFocus()
     }
 
-
     private fun isDarkModeOn(): Boolean { // нашел фун, как проверить, включен ли ночной режим
         val nightModeFlags = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
         val isDarkModeOn = nightModeFlags == Configuration.UI_MODE_NIGHT_YES
         return isDarkModeOn
     }
 
-
     private fun networkTrackSearch(stringInput: String) {
         if (stringInput.isNotEmpty()) {
             if (stringInput.isBlank()) {
+                Log.d("API_TRACKS", "Input is blank!")
                 return
             }
+            myRecentInput = stringInput // прихраниваю запрос текстовый последний
             soundtrackApi.search(stringInput).enqueue(object : Callback<SoundtrackResponse> {
                 override fun onResponse(
                     call: Call<SoundtrackResponse>,
                     response: Response<SoundtrackResponse>
                 ) {
-                    myRecentInput = stringInput // прихраниваю запрос текстовый последний
+                    Log.d("TRANSLATION_LOG", "Status code: ${response.code()}")
                     Log.d("API_RESPONSE", response.body()?.toString() ?: "No body")
 
                     if (response.isSuccessful) {
                         tracksList.clear() // если ответ успешен, то чищу список от прошлого и далее проверяю не пуст ли. Если ок - кладу в свой
-                        if (response.body()?.results?.isNotEmpty() == true) {
+
+                        if (response.body()?.results?.isNotEmpty() == true
+                            && response.body()?.resultCount!! > 0
+                        ) {
                             Log.d("API_TRACKS", response.body()!!.results.toString())
                             tracksList.addAll(response.body()?.results!!)
                             placeholderErrorsArea.visibility = View.GONE
@@ -216,40 +223,51 @@ class Search : AppCompatActivity() {
                         }
                         if (tracksList.isEmpty()) {
                             placeholderErrorsArea.visibility = View.VISIBLE
+                            errorPic.visibility = View.VISIBLE
+                            errorPhrase.visibility = View.VISIBLE
                             errorPic.setImageResource(R.drawable.err)
                             errorPhrase.text = getString(R.string.nothing_was_found)
                             resetBtn.visibility = View.GONE
-                            Log.d("API_TRACKS", "Empty list of tracks returned")
+                            Log.d("API_TRACKS", "Empty list of tracks returned!!")
                             //showMessage(getString(R.string.nothing_found), "")
                         } else {
                             placeholderErrorsArea.visibility = View.GONE
                             resetBtn.visibility = View.GONE
+                            Log.d("API_TRACKS", "Else case - the list is not empty")
                             //showMessage("","")
                         }
 
                     } else {
                         placeholderErrorsArea.visibility = View.VISIBLE
+                        errorPic.visibility = View.VISIBLE
+                        errorPhrase.visibility = View.VISIBLE
                         errorPic.setImageResource(R.drawable.err_network)
-                        val codeResponse = response.code().toString()
-                        errorPhrase.text = codeResponse
+                        val textIssue = getString(R.string.network_issues)
+                        errorPhrase.text = textIssue
                         resetBtn.visibility = View.VISIBLE
+                        tracksList.clear()
+                        adapter.notifyDataSetChanged()
+                        Log.d("API_TRACKS", "Not 200 code but there was some response, maybe 400")
                     }
 
                 }
 
                 override fun onFailure(call: Call<SoundtrackResponse>, t: Throwable) {
+                    tracksList.clear()
+                    adapter.notifyDataSetChanged()
+                    errorPic.visibility = View.VISIBLE //при инет-ошибке все поля плейсхолдеры видны
+                    errorPhrase.visibility = View.VISIBLE
                     placeholderErrorsArea.visibility = View.VISIBLE
-                    errorPic.setImageResource(R.drawable.err_network)
-                    val codeResponse = t.message.toString()
-                    errorPhrase.text = codeResponse
+                    errorPic.setImageResource(R.drawable.err_network) // текст про инет-ошибку
+                    val netIssueText = getString(R.string.network_issues)
+                    errorPhrase.text = netIssueText
                     resetBtn.visibility = View.VISIBLE
+                    Log.d("API_TRACKS", "onFailure - no network")
                 }
 
             })
         }
     }
-
-
 
     companion object {
         const val SEARCH_INPUT = "SEARCH INPUT"
@@ -258,8 +276,7 @@ class Search : AppCompatActivity() {
 }
 
 
-
-// мок-список треков на всякий, пока не удаляю:
+// мок-список треков на всякий пока не удаляю:
 //    private fun createTracksList(): ArrayList<Track> {
 //        val tracksList: ArrayList<Track> = arrayListOf()
 //        return tracksList.apply {
@@ -269,38 +286,6 @@ class Search : AppCompatActivity() {
 //                    getString(R.string.track_1_artist_name),
 //                    getString(R.string.track_1_tr_time),
 //                    getString(R.string.track_1_artwork_url)
-//                )
-//            )
-//            add(
-//                Track(
-//                    getString(R.string.track_2_tr_name),
-//                    getString(R.string.track_2_artist_name),
-//                    getString(R.string.track_2_tr_time),
-//                    getString(R.string.track_2_artwork_url)
-//                )
-//            )
-//            add(
-//                Track(
-//                    getString(R.string.track_3_tr_name),
-//                    getString(R.string.track_3_artist_name),
-//                    getString(R.string.track_3_tr_time),
-//                    getString(R.string.track_3_artwork_url)
-//                )
-//            )
-//            add(
-//                Track(
-//                    getString(R.string.track_4_tr_name),
-//                    getString(R.string.track_4_artist_name),
-//                    getString(R.string.track_4_tr_time),
-//                    getString(R.string.track_4_artwork_url)
-//                )
-//            )
-//            add(
-//                Track(
-//                    getString(R.string.track_5_tr_name),
-//                    getString(R.string.track_5_artist_name),
-//                    getString(R.string.track_5_tr_time),
-//                    getString(R.string.track_5_artwork_url)
 //                )
 //            )
 //        }
