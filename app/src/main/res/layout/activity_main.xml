@@ -12,12 +12,14 @@
     android:paddingTop="14dp"
     >
 
-    <TextView style="@style/ActivityTopPanelStyle"
-        android:text="@string/app_name"
-        android:textColor="@color/white"
-        android:textSize="@dimen/medium_textsize"
-        android:paddingBottom="@dimen/size_16dp"
-
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        app:iconGravity="textStart"
+        app:title="@string/app_name"
+        app:titleTextAppearance="@style/ToolbarCustomStyle"
+        app:titleTextColor="@color/white"
         />
 
     <LinearLayout

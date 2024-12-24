@@ -2,77 +2,129 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/search_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorSecondary"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/back_search_button"
-        style="@style/ActivityTopPanelStyle"
-        android:background="@android:color/transparent"
-        android:backgroundTint="@color/white"
-        android:gravity="center"
-        android:paddingStart="20dp"
-        android:paddingTop="@dimen/size_14dp"
-        android:paddingBottom="@dimen/size_16dp"
-        android:text="@string/search_but_text"
-        android:textColor="?attr/colorOnPrimary"
-        android:textSize="@dimen/medium_textsize"
-        android:textStyle="normal"
-        app:icon="@drawable/arrow_back"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_search_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:padding="4dp"
         app:iconGravity="textStart"
-        app:iconPadding="@dimen/icon_padding_2"
-        app:iconTint="?attr/colorOnPrimary" />
+        app:navigationIcon="@drawable/arrow_back"
+        app:title="@string/search_but_text"
+        app:titleTextAppearance="@style/ToolbarCustomStyle" />
+
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:paddingVertical="@dimen/size_8dp"
         android:layout_marginHorizontal="@dimen/size_16dp"
         android:layout_marginBottom="@dimen/size_16dp"
-        >
+        android:paddingVertical="@dimen/size_8dp">
 
         <EditText
             android:id="@+id/search_field"
-            android:focusable="true"
             style="@style/EditTextStyle1"
+            android:layout_gravity="center_vertical"
             android:background="@drawable/rounded_edittext"
             android:drawableStart="@drawable/small_search"
             android:drawableEnd="@drawable/emptyshape"
             android:drawablePadding="@dimen/icon_padding"
-            android:layout_gravity="center_vertical"
-            android:paddingStart="@dimen/size_12dp"
+
+            android:focusable="true"
+            android:imeOptions="actionDone"
+            android:importantForAutofill="no"
             android:inputType="text"
             android:letterSpacing="0"
             android:maxLines="1"
+            android:paddingStart="@dimen/size_12dp"
+
             android:textColor="?attr/colorOnPrimary"
-            android:textFontWeight="400"
-            android:importantForAutofill="no"
             android:textCursorDrawable="@drawable/cursor"
-            />
+            android:textFontWeight="400" />
 
         <ImageView
             android:id="@+id/clear_btn"
-
             android:layout_width="@dimen/size_12dp"
             android:layout_height="@dimen/size_12dp"
-            android:contentDescription="@string/search_but_text"
-            android:src="@drawable/clear_cross"
             android:layout_gravity="center_vertical|end"
             android:layout_marginEnd="@dimen/size_14dp"
+            android:contentDescription="@string/search_but_text"
+            android:src="@drawable/clear_cross"
             android:visibility="gone"
+            tools:visibility="visible"
             />
 
     </FrameLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_tracks"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        />
 
+    <LinearLayout
+        android:id="@+id/placeholder_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="86dp"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="visible"
+        >
+
+        <ImageView
+            android:id="@+id/error_picture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/err" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/error_phrase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginHorizontal="@dimen/icon_size_24"
+            android:layout_marginTop="@dimen/size_16dp"
+            android:fontFamily="@font/ys_display_medium"
+            android:letterSpacing="0"
+            android:text="@string/network_issues"
+            android:textAlignment="center"
+            android:textColor="?attr/colorOnPrimary"
+            android:textFontWeight="400"
+            android:textSize="19sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/reset_btn"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/icon_size_24"
+            android:backgroundTint="?attr/colorOnPrimary"
+            android:fontFamily="@font/ys_display_medium"
+            android:letterSpacing="0"
+            android:text="@string/reset_button"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="?attr/colorSecondary"
+            android:textFontWeight="500"
+            android:textSize="14sp"
+            app:cornerRadius="54dp"
+            />
 
     </LinearLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_tracks"
+        tools:listitem="@layout/track_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+
+</LinearLayout>

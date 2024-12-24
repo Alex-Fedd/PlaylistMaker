@@ -36,6 +36,7 @@
             android:textColor="?attr/colorOnPrimary"
             android:textFontWeight="400"
             android:textSize="@dimen/small_textsize"
+
             tools:text="track name" />
 
         <LinearLayout
@@ -55,6 +56,7 @@
                 android:textColor="?attr/colorOnSecondary"
                 android:textFontWeight="400"
                 android:textSize="@dimen/text_11sp"
+                android:maxWidth="240dp"
                 tools:text="artist name" />
 
             <ImageView
