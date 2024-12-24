@@ -12,7 +12,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import java.text.SimpleDateFormat
 import java.util.Locale
-import java.util.Date
 
 class TracksAdapter(private val tracksList: ArrayList<Track>) :
     RecyclerView.Adapter<TracksAdapter.TrackViewHolder>() {
@@ -37,7 +36,8 @@ class TracksAdapter(private val tracksList: ArrayList<Track>) :
                 .centerCrop()
                 .into(trackPicture)
 
-            val formatOfTime = SimpleDateFormat("mm:ss", Locale.getDefault()).format(track.trackTime) // формат в мин и сек
+            val formatOfTime = SimpleDateFormat("mm:ss", Locale.getDefault())
+                .format(track.trackTimeMillis) // формат в мин и сек из лонга
             trackName.text = track.trackName
             trackTime.text = formatOfTime
             artistName.text = track.artistName
@@ -48,7 +48,7 @@ class TracksAdapter(private val tracksList: ArrayList<Track>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrackViewHolder {
         return TrackViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.track_view, parent, false)
-        ) // создал в констр-е холдера лейаут вьюхи
+        ) // создал в констр-е холдера лейаут вью
     }
 
     override fun onBindViewHolder(holder: TrackViewHolder, position: Int) {
