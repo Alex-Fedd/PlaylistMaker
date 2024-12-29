@@ -10,8 +10,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import java.text.SimpleDateFormat
+import java.util.Locale
 
-class TracksAdapter(val tracksList: ArrayList<Track>) :
+class TracksAdapter(private val tracksList: ArrayList<Track>) :
     RecyclerView.Adapter<TracksAdapter.TrackViewHolder>() {
 
 
@@ -23,6 +25,7 @@ class TracksAdapter(val tracksList: ArrayList<Track>) :
         private val dipToPixelRadius = dpToPx(2.0f, itemView.context)
 
         fun bind(track: Track) {
+
             Glide // подключил Глайд, загружаю картинку из трэка приходящего, дай плейсхолд при ошибках, скругляю радиус, выравниваю масштаб и подгружаю в Вьюху внутри холдера всё
                 .with(itemView)
                 .load(track.artworkUrl100)
@@ -33,8 +36,10 @@ class TracksAdapter(val tracksList: ArrayList<Track>) :
                 .centerCrop()
                 .into(trackPicture)
 
+            val formatOfTime = SimpleDateFormat("mm:ss", Locale.getDefault())
+                .format(track.trackTimeMillis) // формат в мин и сек из лонга
             trackName.text = track.trackName
-            trackTime.text = track.trackTime
+            trackTime.text = formatOfTime
             artistName.text = track.artistName
         }
     }
@@ -43,7 +48,7 @@ class TracksAdapter(val tracksList: ArrayList<Track>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrackViewHolder {
         return TrackViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.track_view, parent, false)
-        ) // создал в констр-е холдера лейаут вьюхи
+        ) // создал в констр-е холдера лейаут вью
     }
 
     override fun onBindViewHolder(holder: TrackViewHolder, position: Int) {
