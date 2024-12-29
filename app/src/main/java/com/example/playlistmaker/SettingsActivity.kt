@@ -5,7 +5,6 @@ import android.net.Uri
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -13,6 +12,7 @@ import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.android.material.textview.MaterialTextView
 
 class SettingsActivity : AppCompatActivity() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,13 +31,18 @@ class SettingsActivity : AppCompatActivity() {
             this.finish()
         }
 
-        // сам нашел логику переключения на свитчере (в спринте 9 еще не было этого)
-        val switchBtn = findViewById<SwitchMaterial>(R.id.switch_theme)
-        switchBtn.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            } else AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        //достаем ШарПреф для работы
+        val sharedPref = getSharedPreferences(SHARED_PREF_KEY, MODE_PRIVATE)
+        val darkTheme = sharedPref.getBoolean(SWITCHER_KEY,false)//ввел флаг темы по ключу текущему в ШП
+        val switchBtn = findViewById<SwitchMaterial>(R.id.switch_theme)//нашел вью
+
+        switchBtn.isChecked = darkTheme // ставлю переключатель в положение в соответствии с темой из ШарПреф
+
+        switchBtn.setOnCheckedChangeListener { switcher, isChecked ->//слушатель по клику из Апп класса вызывает метод переключения и передает ему текушщее состояние свитчера
+            (applicationContext as App).switchTheme(isChecked) // даункаст поля Контекста в конкретно нааш тип Апп + установка темы
         }
+
+
 
         val shareTheAppButton = findViewById<MaterialTextView>(R.id.share_app_button)
         shareTheAppButton.setOnClickListener {

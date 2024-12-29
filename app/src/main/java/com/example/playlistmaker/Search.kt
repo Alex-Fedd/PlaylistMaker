@@ -34,6 +34,7 @@ class Search : AppCompatActivity() {
 
     private var searchInput: String = ""
     private val baseUrl = "https://itunes.apple.com"
+    private var myRecentInput: String = "" // для запоминания последнего введенного и перезапроса по Кнопке ресета, если она показывается при запросе
 
     // добавил логинг по рекомендации - для мониторинга (запросы проходят)
     private val logging = HttpLoggingInterceptor().apply {
@@ -58,9 +59,6 @@ class Search : AppCompatActivity() {
     private lateinit var errorPic: ImageView
     private lateinit var clearTextButton: ImageView
 
-    private var myRecentInput: String =
-        "" // для запоминания последнего введенного и перезапроса по Кнопке ресета,
-    // если она показывается при запросе
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,7 +70,7 @@ class Search : AppCompatActivity() {
             insets
         }
 
-        // ниже несколько строк про RV и адаптер
+        // ниже несколько строк по RV+его адаптеру
         tracksList = arrayListOf()
         adapter = TracksAdapter(tracksList) // создал адаптер и передал список в него
         val recyclerView = findViewById<RecyclerView>(R.id.rv_tracks) // нашел свой РВ в хмл
@@ -108,13 +106,7 @@ class Search : AppCompatActivity() {
         //inputET.requestFocus() // фокус при нажатии на Эдит, но здесь не нужен
         inputET.addTextChangedListener(
             object : TextWatcher {
-                override fun beforeTextChanged(
-                    s: CharSequence?,
-                    start: Int,
-                    count: Int,
-                    after: Int
-                ) {
-                }
+                override fun beforeTextChanged(s: CharSequence?,start: Int,count: Int,after: Int) {}
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                     if (!s.isNullOrEmpty()) { // если ввел что-то - иконка очистки есть
@@ -124,13 +116,11 @@ class Search : AppCompatActivity() {
                         } else {
                             clearTextButton.visibility = clearButtonVisible(s)
                         }
-
                     } else {
                         clearTextButton.visibility =
                             clearButtonVisible(s) // если не ввел - убрать видимость иконки очистки
                     }
                 }
-
                 override fun afterTextChanged(s: Editable?) {
                     searchInput =
                         s.toString() // когда уже закончили вводить-то кладем в глобал.переменную
@@ -142,13 +132,13 @@ class Search : AppCompatActivity() {
                         adapter.notifyDataSetChanged()
                     }
                 }
-
             })
-        // слушатель проверки нажатия на клав.done - для удаления фокуса(курсора) и скрытия клавиатуры
+
+        // слушатель нажатия на клав.done для удаления фокуса, скрытия клавиатуры, вызова сетевого по нажатию
         inputET.setOnEditorActionListener { _, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE || event?.keyCode == KeyEvent.KEYCODE_ENTER) {
                 hideKeyB(inputET)
-                // здесь по нажатию done запрос в сеть с введённым текстом
+                // здесь по done запрос в сеть с введённым текстом
                 networkTrackSearch(inputET.text.toString().trim())
                 true
             } else {
@@ -156,11 +146,10 @@ class Search : AppCompatActivity() {
             }
         }
 
-        resetBtn.setOnClickListener { // при нажатии на обновить, ставлю прошлый свой текст и переделываю запрос
+        resetBtn.setOnClickListener { // при нажатии на обновить в заглушке-ощибке ставлю прошлый свой текст и переделываю запрос
             inputET.setText(myRecentInput)
             networkTrackSearch(myRecentInput)
         }
-
     }
 
     override fun onSaveInstanceState(outState: Bundle) { // при смене конфига (поворот) сохраняет введенные строки. Но при выходе из апки потом понадобится SharedPref*
@@ -274,19 +263,3 @@ class Search : AppCompatActivity() {
     }
 
 }
-
-
-// мок-список треков на всякий пока не удаляю:
-//    private fun createTracksList(): ArrayList<Track> {
-//        val tracksList: ArrayList<Track> = arrayListOf()
-//        return tracksList.apply {
-//            add(
-//                Track(
-//                    getString(R.string.track_1_tr_name),
-//                    getString(R.string.track_1_artist_name),
-//                    getString(R.string.track_1_tr_time),
-//                    getString(R.string.track_1_artwork_url)
-//                )
-//            )
-//        }
-//    }
